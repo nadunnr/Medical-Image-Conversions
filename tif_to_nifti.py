@@ -1,5 +1,5 @@
 import argparse
-from glob import glob
+import glob
 import os
 from pathlib import Path
 import sys
@@ -8,12 +8,19 @@ import nibabel as nib
 import numpy as np
 
 input_path = "D:/VIP Cup/Dataset/ICIP training data/0/RawDataQA (1)/"
-output_path= "D:/VIP Cup/test.nii.gz"
+output_path= "D:/VIP Cup/test12.nii.gz"
+vip_dataset = "D:/VIP Cup/Dataset/ICIP training data/"
+
+def is_tiff_dir(curr_path):
+    '''function to check if the current directory having any tiff files'''
+    num_dcm = len(glob.glob(os.path.join(curr_path, '*.tiff')))
+    return num_dcm>0
 
 def convert_tiff_dir_to_nifti(input_dir, output_path, stack_axis=2):
+
     try:
         img_dir = input_dir
-        fns = sorted([str(fn) for fn in glob(os.path.join(img_dir,'*.tiff*'))])
+        fns = sorted([str(fn) for fn in glob.glob(os.path.join(img_dir,'*.tiff*'))])
         if not fns:
             raise ValueError(f'img_dir ({input_dir}) does not contain any .tif or .tiff images.')
         imgs = []
@@ -27,3 +34,12 @@ def convert_tiff_dir_to_nifti(input_dir, output_path, stack_axis=2):
     except Exception as e:
         print(e)
 
+convert_tiff_dir_to_nifti(input_path, output_path)
+
+if __name__ == "__main__":
+
+    dataset = glob.iglob(os.path.join(vip_dataset, '**'), recursive=True)
+
+    for i,file in enumerate(dataset):
+        if is_tiff_dir(file):
+            print(file)
