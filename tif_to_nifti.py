@@ -20,7 +20,7 @@ def is_tiff_dir(curr_path):
     return num_dcm>0
 
 def convert_tiff_dir_to_nifti(input_dir, output_path, stack_axis=2):
-
+    '''function to convert tiff dir to nifti files'''
     try:
         img_dir = input_dir
         fns = sorted([str(fn) for fn in glob.glob(os.path.join(img_dir,'*.tiff*'))])
@@ -38,6 +38,7 @@ def convert_tiff_dir_to_nifti(input_dir, output_path, stack_axis=2):
         print(e)
 
 def out_path(in_path):
+    '''generate output path'''
     base_name = os.path.basename(in_path)
     class_name = os.path.basename(os.path.dirname(in_path))
     out_path = os.path.join(output_dataset,class_name) + "/" + base_name + ".nii.gz"
