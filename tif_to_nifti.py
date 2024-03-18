@@ -11,6 +11,8 @@ input_path = "D:/VIP Cup/Dataset/ICIP training data/0/RawDataQA (1)/"
 output_path= "D:/VIP Cup/test12.nii.gz"
 vip_dataset = "D:/VIP Cup/Dataset/ICIP training data/"
 
+converted_nifti_count = 0
+
 def is_tiff_dir(curr_path):
     '''function to check if the current directory having any tiff files'''
     num_dcm = len(glob.glob(os.path.join(curr_path, '*.tiff')))
