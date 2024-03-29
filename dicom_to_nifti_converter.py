@@ -11,10 +11,13 @@ def lenof_dicom_dir(curr_path):
     num_dcm = len(glob.glob(os.path.join(curr_path, '*.dcm')))
     return num_dcm
 
+
 count = 0 #number of nifti files
-input_path = 'D:/ScholarX/Dataset/'  #input file path to NSCLC Radiogenomics directory
-output_path = 'D:/ScholarX/Output/'                              #output directory
-test_input = 'D:/ScholarX/Dataset/'
+
+'''give input path to the dicom series dataset and the output path'''
+input_path = 'D:/Dataset/'  #input file path to dataset
+output_path = 'D:/Output/'  #output directory
+
 
 # Used recursive glob to find all subdirectories
 dicom_files = glob.iglob(os.path.join(input_path, '**'), recursive=True)
@@ -31,7 +34,7 @@ for i, file in enumerate(dicom_files):
             if len(os.listdir(input_dir)) == 2:
 
                 # output directory of the corresponding nifti file
-                new_dir = os.path.join(output_path, input_dir[24:])
+                new_dir = os.path.join(output_path, input_dir[24:]) #This [24:] thing is for get the corresponding output file name. You can change it according to your need
                 os.makedirs(new_dir, exist_ok=True)
 
                 #checking the number of dcms
