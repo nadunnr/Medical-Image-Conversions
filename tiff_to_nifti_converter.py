@@ -1,8 +1,6 @@
-import argparse
 import glob
 import os
 from pathlib import Path
-import sys
 from PIL import Image
 import nibabel as nib
 import numpy as np
